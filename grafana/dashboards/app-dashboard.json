@@ -1,0 +1,67 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Request Latency",
+      "targets": [
+        {
+          "expr": "app_request_latency_seconds_sum / app_request_latency_seconds_count",
+          "legendFormat": "avg latency",
+          "refId": "A"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      }
+    },
+    {
+      "type": "graph",
+      "title": "Request Count",
+      "targets": [
+        {
+          "expr": "app_requests_total",
+          "legendFormat": "{{method}} {{endpoint}}",
+          "refId": "B"
+        }
+      ],
+      "xaxis": {
+        "mode": "time"
+      }
+    },
+    {
+      "type": "logs",
+      "title": "Application Logs",
+      "targets": [
+        {
+          "expr": "{job=\"app\"}",
+          "refId": "C"
+        }
+      ]
+    },
+    {
+      "type": "trace",
+      "title": "HTTP Traces",
+      "targets": [
+        {
+          "datasource": "Jaeger",
+          "query": "service_name:app"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36,
+  "title": "App Observability Dashboard",
+  "version": 1
+}
