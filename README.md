@@ -69,6 +69,7 @@ Docker & Docker Compose	To containerize and orchestrate all services
 
 🧩 Steps to Build and Run
 
+```
 Clone the Repository
 
 git clone https://github.com/your-username/observability-project.git
@@ -105,6 +106,7 @@ Add Prometheus as a data source (http://prometheus:9090
 )
 
 Import pre-built dashboards or create custom panels.
+```
 
 📊 Project Use Case / Real-World Application
 
@@ -163,6 +165,7 @@ ready
 
 
 means Loki’s internal HTTP health check returned success — your logging system is operational 🎉
+
 
 
 
