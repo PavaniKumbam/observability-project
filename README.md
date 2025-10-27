@@ -4,6 +4,7 @@
 End-to-End Observability Stack using Prometheus, Grafana, Jaeger, and Loki
 
 🧠 Purpose of the Project
+```
 
 The main purpose of this project is to implement a full observability solution for monitoring, tracing, and logging a containerized microservice application.
 
@@ -16,6 +17,8 @@ Collect, visualize, and analyze logs efficiently.
 Trace application requests to identify performance bottlenecks.
 
 Improve reliability, performance, and debugging efficiency in production systems.
+
+```
 
 In short, this project demonstrates how to observe the health, performance, and behavior of a running application using open-source tools in Dockerized form.
 
@@ -156,5 +159,6 @@ ready
 
 
 means Loki’s internal HTTP health check returned success — your logging system is operational 🎉
+
 
 
