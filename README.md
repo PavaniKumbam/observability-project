@@ -149,6 +149,8 @@ observability-project/
 
 🧩 Why It’s Useful
 
+```
+
 When you containerize Loki (as you did with Docker Compose), it goes through initialization steps:
 
 Loads configuration (loki-config.yml)
@@ -162,9 +164,10 @@ Marks itself as ready via /ready
 So this message:
 
 ready
-
+```
 
 means Loki’s internal HTTP health check returned success — your logging system is operational 🎉
+
 
 
 
