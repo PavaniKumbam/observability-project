@@ -3,6 +3,7 @@ import logging
 import time
 from prometheus_client import Counter, Histogram, start_http_server
 from opentelemetry import trace
+from opentelemetry.trace import get_current_span
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
@@ -27,7 +28,14 @@ tracer = trace.get_tracer(__name__)
 @app.route('/')
 def home():
     start = time.time()
-    logging.info("Home endpoint accessed")
+    span = get_current_span()
+    trace_id = None
+    try:
+        sc = span.get_span_context()
+        trace_id = format(sc.trace_id, '032x')  # human-readable hex
+    except Exception:
+        trace_id = "none"
+    logging.info(f"Home endpoint accessed trace_id={trace_id}")
     with tracer.start_as_current_span("home-endpoint"):
         time.sleep(0.2)
     REQUEST_COUNT.labels(method='GET', endpoint='/').inc()
@@ -38,6 +46,13 @@ def home():
 def health():
     logging.info("Health check")
     return "OK", 200
+
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
+
+@app.route('/metrics')
+def metrics():
+    return generate_latest(), 200, {'Content-Type': CONTENT_TYPE_LATEST}
+
 
 if __name__ == '__main__':
     start_http_server(8000)  # Prometheus metrics
