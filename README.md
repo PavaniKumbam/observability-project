@@ -39,6 +39,8 @@ A simple Python Flask app that exposes custom metrics via /metrics.
 All components are containerized using Docker Compose for easy deployment and management.
 
 🛠️ Tools Used
+
+```
 Tool	Purpose
 Python Flask	Sample web application that exposes metrics
 Prometheus	Scrapes and stores time-series metrics
@@ -46,6 +48,8 @@ Grafana	Visualizes metrics & dashboards
 Jaeger	Provides distributed tracing for request flows
 Loki	Centralized log aggregation and querying
 Docker & Docker Compose	To containerize and orchestrate all services
+
+```
 ⚙️ Architecture Overview
           ┌──────────────┐
           │  Flask App   │
@@ -159,6 +163,7 @@ ready
 
 
 means Loki’s internal HTTP health check returned success — your logging system is operational 🎉
+
 
 
 
